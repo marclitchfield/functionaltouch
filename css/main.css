@@ -1,0 +1,27 @@
+.module, .function, .expression, .argument {
+	border: 1px solid black;
+	margin: 8px 4px;
+	padding: 4px;
+	border-radius: 4px;
+}
+
+.argument {
+	margin: 0 4px 0 0;
+}
+
+.function, .arguments, .expression, .argument, .block {
+	vertical-align: middle;
+	display: inline-block;
+}
+
+.call {
+	background-color: hsla(192,50%,80%,0.4);
+}
+
+.literal {
+	background-color: hsl(0,50%,80%);
+}
+
+.ref, .argument {
+	background-color: hsl(220,50%,80%);
+}

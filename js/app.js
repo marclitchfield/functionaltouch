@@ -4,7 +4,7 @@ function ModuleController($scope) {
 			name: 'module A',
 			functions: [
 				{
-					name: 'fib',
+					name: 'fac',
 					arguments: [ { name: 'n' } ],
 					expressions: [
 						{
@@ -14,6 +14,7 @@ function ModuleController($scope) {
 								{
 									type: 'call',
 									func: '<',
+									infix: true,
 									expressions: [
 										{ type: 'ref', name: 'n' },
 										{ type: 'literal', value: 1 }
@@ -23,15 +24,17 @@ function ModuleController($scope) {
 								{
 									type: 'call',
 									func: '*',
+									infix: true,
 									expressions: [
 										{ type: 'ref', name: 'n' },
 										{
 											type: 'call',
-											func: 'fib',
+											func: 'fac',
 											expressions: [
 												{
 													type: 'call',
 													func: '-',
+													infix: true,
 													expressions: [
 														{ type: 'ref', name: 'n' },
 														{ type: 'literal', value: 1 }
