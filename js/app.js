@@ -192,7 +192,7 @@ function ModuleController($scope) {
 											]
 										},
 										{
-											ttype: 'call',
+											type: 'call',
 											func: 'combinations',
 											expressions: [
 												{ type: 'ref', name: 'N' },
@@ -201,6 +201,8 @@ function ModuleController($scope) {
 										}
 									]
 								}
+
+
 							]
 						}
 					]
