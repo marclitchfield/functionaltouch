@@ -1,0 +1,39 @@
+<!doctype html>
+<html ng-app>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+	<script src="js/app.js"></script>
+</head>
+<body>
+
+	<div class="modules" ng-controller="ModuleController">
+		<div class="module" ng-repeat="module in modules">
+			<span>{{ module.name }}</span>
+
+			<div class="functions">				
+				<div class="function" ng-repeat="func in module.functions">
+					<span>{{ func.name }}</span>
+					<div class="arguments">
+						<div class="argument" ng-repeat="arg in func.arguments">
+							<span>{{ arg.name }}</span>
+						</div>
+					</div>
+
+					<div class="expressions">
+						<script type="text/ng-template" id="expression.html">
+							Type: {{ expr.type }}
+							<div class="expressions">
+								<div class="expression" ng-repeat="expr in expr.expressions" ng-include="'expression.html'">
+								</div>
+							</div>
+						</script>
+
+						<div class="expression" ng-repeat="expr in func.expressions" ng-include="'expression.html'">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
