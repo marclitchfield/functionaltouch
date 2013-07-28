@@ -14,7 +14,6 @@ function ModuleController($scope) {
 								{
 									type: 'call',
 									func: '<',
-									infix: true,
 									expressions: [
 										{ type: 'ref', name: 'n' },
 										{ type: 'literal', value: 1 }
@@ -24,7 +23,6 @@ function ModuleController($scope) {
 								{
 									type: 'call',
 									func: '*',
-									infix: true,
 									expressions: [
 										{ type: 'ref', name: 'n' },
 										{
@@ -34,7 +32,6 @@ function ModuleController($scope) {
 												{
 													type: 'call',
 													func: '-',
-													infix: true,
 													expressions: [
 														{ type: 'ref', name: 'n' },
 														{ type: 'literal', value: 1 }
@@ -47,7 +44,168 @@ function ModuleController($scope) {
 							]
 						}
 					]
+				},
+				{
+					name: 'combinations',
+					arguments: [ { name: 'N' }, { name: 'k' } ],
+					expressions: [
+						{
+							type: 'call',
+							func: '/',
+							expressions: [
+								{
+									type: 'call',
+									func: 'fac',
+									expressions: [ { type: 'ref', name: 'N' }
+									]
+								},
+								{
+									type: 'call',
+									func: '*',
+									expressions: [
+										{
+											type: 'call',
+											func: 'fac',
+											expressions: [ { type: 'ref', name: 'k' } ]
+										},
+										{
+											type: 'call',
+											func: 'fac',
+											expressions: [
+												{
+													type: 'call',
+													func: '-',
+													expressions: [
+														{ type: 'ref', name: 'N' },
+														{ type: 'ref', name: 'k' }
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					name: 'binomial',
+					arguments: [
+						{ name: 'N' },
+						{ name: 'p' },
+						{ name: 'k' }
+					],
+					expressions: [
+						{
+							type: 'call',
+							func: '*',
+							expressions: [
+								{
+									type: 'call',
+									func: 'combinations',
+									expressions: [
+										{ type: 'ref', name: 'N' },
+										{ type: 'ref', name: 'k' }
+									]
+								},
+								{
+									type: 'call',
+									module: 'math',
+									func: 'pow',
+									expressions: [
+										{ type: 'ref', name: 'p' },
+										{ type: 'ref', name: 'k' }
+									]
+								},
+								{
+									type: 'call',
+									module: 'math',
+									func: 'pow',
+									expressions: [
+										{
+											type: 'call',
+											func: '-',
+											expressions: [
+												{ type: 'literal', value: 1 },
+												{ type: 'ref', name: 'p' }
+											]
+										},
+										{
+											type: 'call',
+											func: '-',
+											expressions: [
+												{ type: 'ref', name: 'N' },
+												{ type: 'ref', name: 'k' }
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					name: 'hypergeometric',
+					arguments: [
+						{ name: 'N' },
+						{ name: 'S' },
+						{ name: 'n' },
+						{ name: 'k' }
+					],
+					expressions: [
+						{
+							type: 'call',
+							func: '*',
+							expressions: [
+								{
+									type: 'call',
+									func: 'combinations',
+									expressions: [
+										{ type: 'ref', name: 'S' },
+										{ type: 'ref', name: 'k' }
+									]
+								},
+								{
+									type: 'call',
+									func: '/',
+									expressions: [
+										{
+											type: 'call',
+											func: 'combinations',
+											expressions: [
+												{
+													type: 'call',
+													func: '-',
+													expressions: [
+														{ type: 'ref', name: 'N' },
+														{ type: 'ref', name: 'S' }
+													]
+												},
+												{
+													type: 'call',
+													func: '-',
+													expressions: [
+														{ type: 'ref', name: 'n' },
+														{ type: 'ref', name: 'k' }
+													]
+												}
+											]
+										},
+										{
+											ttype: 'call',
+											func: 'combinations',
+											expressions: [
+												{ type: 'ref', name: 'N' },
+												{ type: 'ref', name: 'n' }
+											]
+										}
+									]
+								}
+							]
+						}
+					]
 				}
+
 			]
 		},
 		{
