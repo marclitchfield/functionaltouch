@@ -5,6 +5,10 @@
 	border-radius: 4px;
 }
 
+.argument, .literal, .ref {
+	padding: 2px 4px;
+}
+
 .argument {
 	margin: 0 4px 0 0;
 }
