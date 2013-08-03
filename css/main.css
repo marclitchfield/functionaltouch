@@ -45,3 +45,15 @@
 .ref, .argument {
 	background-color: hsl(162,50%,80%);
 }
+
+.new-argument {
+	display: inline-block;
+	width: 0.5em;
+	height: 0.5em;
+	background-color: white;
+	border: 1px solid #121212;
+}
+
+.ui-draggable-dragging {
+	z-index: 100;
+}

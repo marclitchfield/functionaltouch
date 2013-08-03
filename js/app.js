@@ -1,4 +1,6 @@
-function ModuleController($scope) {
+var App = angular.module('functionaltouch', ['ngDragDrop']);
+
+App.controller('ModuleController', function($scope) {
 	$scope.modules = [
 		{
 			name: 'module A',
@@ -215,7 +217,4 @@ function ModuleController($scope) {
 			functions: []
 		}
 	];
-}
-
-function FunctionController($scope) {
-}
+});
